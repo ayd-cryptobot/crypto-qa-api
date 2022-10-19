@@ -1,0 +1,84 @@
+openapi: 3.0.3
+info:
+  title: CryptoBot - Q&A
+  description: API encargada de manejar el CRUD de las Q&A
+  version: 0.1.0
+paths:
+  /qa/create:
+    post:
+      tags:
+        - Q&As
+      summary: Create a Q&A
+      description: This endpoint create a Q&A
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Create'
+        required: true
+      responses:
+        '200':
+          description: Q&A create successfully
+        '500':
+          description: Internal error 
+  /qa/edit:
+    put:
+      summary: Edit a Q&A
+      description: This endpoint edit a Q&A
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Edit'
+        required: true
+      responses:
+        '200':
+          description: Q&A edit successfully
+        '500':
+          description: Internal error 
+  /qa/delete/{id}:
+    delete:
+      summary: Deletes a Q&A
+      description: delete a Q&A
+      parameters:
+        - name: id
+          in: path
+          description: Q&A id to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Q&A delete successfully
+        '400':
+          description: Invalid pet value
+components:
+  schemas:
+    Edit:
+      type: object
+      properties:
+        question:
+          type: string
+          example: "hola como estas"
+        answer:
+          type: string
+          example: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sagittis hendrerit facilisis. Aenean sit amet arcu nec urna laoreet vehicula nec eget est. Phasellus velit eros, tincidunt vitae magna ac, sagittis auctor massa. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus porttitor non mi eget posuere."
+        idQA:
+          type: integer
+          example: 1
+    Create:
+      type: object
+      properties:
+        question:
+          type: string
+          example: "hay una actualizacion nueva?"
+        answer:
+          type: string
+          example: "No hay una actualización"
+    Delete:
+      type: object
+      properties:
+        idQA:
+          type: integer
+          example: 1
