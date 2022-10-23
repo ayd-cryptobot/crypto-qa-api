@@ -31,6 +31,7 @@ exports.CreateQA = async (req, res) => {
 
 exports.EditQA = async (req, res) => {
     try {
+        console.log(req.body)
         conexion.query('UPDATE qa set ? WHERE id = ?', [req.body, req.params.id], (err, conn)=>{
             if(err) return res.send(err)
 
