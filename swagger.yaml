@@ -23,6 +23,8 @@ paths:
           description: Internal error 
   /qa/edit:
     put:
+      tags:
+          - Q&As
       summary: Edit a Q&A
       description: This endpoint edit a Q&A
       requestBody:
@@ -38,6 +40,8 @@ paths:
           description: Internal error 
   /qa/delete/{id}:
     delete:
+      tags:
+          - Q&As
       summary: Deletes a Q&A
       description: delete a Q&A
       parameters:
@@ -53,6 +57,22 @@ paths:
           description: Q&A delete successfully
         '400':
           description: Invalid pet value
+  /qa/ia/text-generator:
+    post:
+      tags:
+          - Q&As
+      summary: Text generator tool using AI
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TextGenerator'
+        required: true
+      responses:
+        '201':
+          description: text generated successfully
+        '500':
+          description: Internal error
 components:
   schemas:
     Edit:
@@ -76,9 +96,9 @@ components:
         answer:
           type: string
           example: "No hay una actualización"
-    Delete:
+    TextGenerator:
       type: object
       properties:
-        idQA:
-          type: integer
-          example: 1
+        promt: 
+          type: string
+          example: "¿Cómo funciona la blockchain?"
