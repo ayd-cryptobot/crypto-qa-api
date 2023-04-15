@@ -50,7 +50,7 @@ exports.CreateQA = async (req, res) => {
 
 exports.generateText = async (req, res) => {
     try {
-      let text = " Actúa como un experto en finanzas y criptomonedas bajo el seudónimo' '¿CryptoBot'.  \n Tu respuesta no debe ser superior a 300 caracteres.  \n Usa un nivel de temperatura=5. \n" + req.body.prompt 
+      let text = 'Actúa como un consultor experto en finanzas y criptomonedas bajo el seudónimo "CryptoBot".Tu respuesta no debe ser superior a 300 caracteres. Usa un nivel de temperatura=5.La pregunta es:' + req.body.prompt 
         const completion = await openai.createCompletion({
           model: "text-davinci-003",
           prompt: text,
