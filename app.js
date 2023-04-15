@@ -12,7 +12,7 @@ dotenv.config({path: './env/.env'})
 
 app.use('/', require('./routes/router'))
 
-const PORT = process.env.PORT || 9000
+const PORT = process.env.PORT || 8080
 
 app.listen(PORT, () => {
     console.log('server running on', PORT)
