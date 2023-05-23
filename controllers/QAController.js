@@ -73,6 +73,32 @@ exports.generateText = async (req, res) => {
       }
 };
 
+exports.generateAnalisis = async (req, res) => {
+  try {
+    let text = 'Actúa como un analista financiero profesional. Necesito que analices el precio histórico donde expliques, en un párrafo de máximo 5 lineas, el comportamiento de los siguientes datos de una criptomoneda.Ten en cuenta el precio máximo alcanzado y precio mínimo alcanzado. Los datos son los siguientes:' + req.body.prompt 
+      const completion = await openai.createCompletion({
+        model: "text-davinci-003",
+        prompt: text,
+        max_tokens: 300,
+      });
+      res.status(200).json({ result: completion.data.choices[0].text });
+    } catch(error) {
+      // Consider adjusting the error handling logic for your use case
+      if (error.response) {
+        console.error(error.response.status, error.response.data);
+        res.status(error.response.status).json(error.response.data);
+      } else {
+        console.error(`Error with OpenAI API request: ${error.message}`);
+        res.status(500).json({
+          error: {
+            message: 'An error occurred during your request.',
+          }
+        });
+      }
+    }
+};
+
+
 exports.EditQA = async (req, res) => {
   try {
     conexion.query(
