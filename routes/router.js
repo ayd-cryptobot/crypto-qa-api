@@ -6,6 +6,7 @@ router.get('/qa/consult', QAController.ConsultQA)
 router.get('/qa/consult/:id', QAController.ConsultQAById)
 router.post('/qa/create', QAController.CreateQA)
 router.post('/qa/ia/text-generator', QAController.generateText)
+router.post('/qa/ia/analizar-precios', QAController.generateAnalisis)
 router.put('/qa/edit/:id', QAController.EditQA)
 router.delete('/qa/delete/:id', QAController.DeleteQA)
 
